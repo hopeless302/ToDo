@@ -1,12 +1,13 @@
-const express = require('require');
+const express = require('express');
+const cors = require('cors');
+const routes = require('./controllers');
 const app = express();
+const port = 4000;
+app.use(cors({ origin: "http://localhost:3000" }));
+app.use(express.json());
+app.use(routes());
 
 
-app.use("/api", (req, res) => {
-  res.send("Hello World");
-  res.status(200).send({message: "send data"});
-});
-
-app.listen(3000, () => {
-  console.log("Server is running on port 3000");
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
 });
